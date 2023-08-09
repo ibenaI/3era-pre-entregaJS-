@@ -62,12 +62,30 @@ a {
 }
 
 .producto-img {
-    max-width: 100%;
+    width: 100%;
 }
 
 .producto-detalles {
+    padding: 5px;
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
-    background-color: aqua;
+    background-color: dimgrey;
+}
+
+.producto-detalles .nombre {
+
+}
+
+.producto-detalles .precio {
+
+}
+
+.producto-detalles .agregar {
+    border-radius: 4px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    font-weight: 550;
+    font-size: 15px;
 }
