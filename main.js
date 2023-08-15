@@ -95,7 +95,7 @@ function botonesAgregar() {
 }
 
 let productosEnCarrito;
-let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
+let productosEnCarritoLS = localStorage.getItem("productos-agregados");
 if(productosEnCarritoLS) {
     productosEnCarrito = JSON.parse(productosEnCarritoLS);
     contador();
