@@ -167,7 +167,9 @@ a {
     padding: 0.5rem;
     padding-right: 1.5rem;
     border-radius: 10px;
-    background-color: grey;
+    /* border: solid  1px gold; */
+    box-shadow: 0 0 5px 0 gold;
+    background-color: #181818;
     color: gold;
 }
 

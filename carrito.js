@@ -1,5 +1,5 @@
 //JSON fetch:
-let productosEnCarrito = localStorage.getItem("productos-en-carrito");    //nombre del array en json (cambiar despues)
+let productosEnCarrito = localStorage.getItem("productos-agregados");
 productosEnCarrito = JSON.parse(productosEnCarrito);
 
 //DOM fetch:
@@ -11,6 +11,8 @@ let carritoEliminarProducto = document.querySelectorAll(".carrito-eliminar-produ
 let btnVaciarCarrito = document.querySelector("#carrito-acciones-vaciar");
 let btnTotal = document.querySelector("#carrito-acciones-total");
 let btnComprar = document.querySelector("#carrito-acciones-comprar");
+
+//Functions:
 function agregarProducto() {
     if (productosEnCarrito && productosEnCarrito.length > 0) {
         carritoSinNada.classList.add("disabled");
@@ -70,13 +72,13 @@ function eliminarProducto(e) {
     const INDEX = productosEnCarrito.findIndex(producto => producto.id === idBoton);
     productosEnCarrito.splice(INDEX,1);
     agregarProducto();
-    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+    localStorage.setItem("productos-agregados", JSON.stringify(productosEnCarrito));
 }
 
 btnVaciarCarrito.addEventListener("click", vaciarCarrito);
 function vaciarCarrito() {
     productosEnCarrito.length = 0;
-    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+    localStorage.setItem("productos-agregados", JSON.stringify(productosEnCarrito));
     agregarProducto();
 }
 
@@ -88,7 +90,7 @@ function total() {
 btnComprar.addEventListener("click", comprarCarrito);
 function comprarCarrito() {
     productosEnCarrito.length = 0;
-    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));
+    localStorage.setItem("productos-agregados", JSON.stringify(productosEnCarrito));
     carritoSinNada.classList.add("disabled");
     carritoProductos.classList.add("disabled");
     carritoAcciones.classList.add("disabled");

@@ -3,7 +3,7 @@ const listaDeProductos = [
     {
         id: "producto|a-1",
         titulo: "producto|a-1",
-        imagen: "./assets/abrigo01.jpg",
+        imagen: "./assets/content.jpg",
         categoria: {
             nombre: "Productos|a",
             id: "producto|a"
@@ -13,7 +13,7 @@ const listaDeProductos = [
     {
         id: "producto|a-2",
         titulo: "producto|a-2",
-        imagen: "./assets/abrigo02.jpg",
+        imagen: "./assets/content.jpg",
         categoria: {
             nombre: "Productos|a",
             id: "producto|a"
@@ -23,7 +23,7 @@ const listaDeProductos = [
     {
         id: "producto|b-1",
         titulo: "producto|b-1",
-        imagen: "./assets/pantalon01.png",
+        imagen: "./assets/content.jpg",
         categoria: {
             nombre: "Productos|b",
             id: "producto|b"
@@ -33,7 +33,7 @@ const listaDeProductos = [
     {
         id: "producto|b-2",
         titulo: "producto|b-2",
-        imagen: "./assets/pantalon02.png",
+        imagen: "./assets/content.jpg",
         categoria: {
             nombre: "Productos|b",
             id: "producto|b"
@@ -43,7 +43,7 @@ const listaDeProductos = [
     {
         id: "producto|c-1",
         titulo: "producto|c-1",
-        imagen: "./assets/remera01.jpg",
+        imagen: "./assets/content.jpg",
         categoria: {
             nombre: "Productos|c",
             id: "producto|c"
@@ -53,7 +53,7 @@ const listaDeProductos = [
     {
         id: "producto|c-2",
         titulo: "producto|c-2",
-        imagen: "./assets/remera02.jpg",
+        imagen: "./assets/content.jpg",
         categoria: {
             nombre: "Productos|c",
             id: "producto|c"
@@ -64,7 +64,7 @@ const listaDeProductos = [
 
 // DOM fetch:
 const mainContent = document.querySelector("#main-content");
-let botonesAgregar = document.querySelectorAll(".agregar");
+let btnAgregar = document.querySelectorAll(".agregar");
 const CONTADOR = document.querySelector("#contador");
 
 //Functions:
@@ -75,21 +75,21 @@ function agregarProducto() {
         div.innerHTML = ` 
         <img class="producto-img" src="${producto.imagen}" alt="${producto.titulo}">
         <div class="producto-detalles">
-            <h3 class="nombre">${producto.titulo}</h3>
+            <h3 class="nombre">${producto.titulo}</h3>          
             <p class="precio">$${producto.precio}</p>
             <button class="agregar" id= "${producto.id}">Agregar</button>
         </div>
             `
         mainContent.append(div);
     });
-    actualizarBotonesAgregar();
-    console.log(botonesAgregar);
+    botonesAgregar();
+    console.log(btnAgregar);
 }
 agregarProducto();
 
-function actualizarBotonesAgregar() {
-    botonesAgregar = document.querySelectorAll(".agregar");
-    botonesAgregar.forEach(boton => {
+function botonesAgregar() {
+    btnAgregar = document.querySelectorAll(".agregar");
+    btnAgregar.forEach(boton => {
         boton.addEventListener("click", agregarAlCarrito);
     });
 }
@@ -98,7 +98,7 @@ let productosEnCarrito;
 let productosEnCarritoLS = localStorage.getItem("productos-en-carrito");
 if(productosEnCarritoLS) {
     productosEnCarrito = JSON.parse(productosEnCarritoLS);
-    actualizarContador();
+    contador();
 } else {
     productosEnCarrito = [];
 }
@@ -113,12 +113,12 @@ function agregarAlCarrito(e) {
         productosAgregados.cantidad = 1;
         productosEnCarrito.push(productosAgregados);
     }
-    actualizarContador();
+    contador();
 
-    localStorage.setItem("productos-en-carrito", JSON.stringify(productosEnCarrito));   //cambiar nombre de array en JSON
+    localStorage.setItem("productos-agregados", JSON.stringify(productosEnCarrito));
 };
 
-function actualizarContador() {
+function contador() {
     let contador = productosEnCarrito.reduce((acc, producto) => acc + producto.cantidad, 0);
     CONTADOR.innerHTML = contador;
 }
